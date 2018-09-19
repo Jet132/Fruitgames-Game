@@ -7,23 +7,13 @@ public class GlobalPlayerController : MonoBehaviour
     
     int player_ID = 0;
     GameObject selectedPlayer;
-    public List<GameObject> players = new List<GameObject>()
-        {
-            /*GameObject.Find("Player_1"),
-            GameObject.Find("Player_2"),
-            GameObject.Find("Player_3")*/
-        };
-
-    public void DisableBoolean(params bool[] enabled)
-    {
-        players[0].GetComponent<PlayerController>().enabled = enabled[0];
-        players[1].GetComponent<PlayerController>().enabled = enabled[1];
-        players[2].GetComponent<PlayerController>().enabled = enabled[2];
-    }
+    public new GameObject camera;
+    public List<GameObject> players = new List<GameObject>() { };
 
     void Start()
     {
         selectedPlayer = players[0];
+        DontDestroyOnLoad(transform.gameObject);
     }
 
     void Update()
@@ -56,6 +46,8 @@ public class GlobalPlayerController : MonoBehaviour
                     selectedPlayer = i;
                 }
             }
+
+            camera.GetComponent<CameraController>().target = selectedPlayer;
         }
     }
 }
