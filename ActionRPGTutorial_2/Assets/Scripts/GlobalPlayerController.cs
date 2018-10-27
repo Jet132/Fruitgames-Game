@@ -5,15 +5,28 @@ using UnityEngine;
 public class GlobalPlayerController : MonoBehaviour
 {
     
-    int player_ID = 0;
+    public int player_ID = 0;
     GameObject selectedPlayer;
     public new GameObject camera;
     public List<GameObject> players = new List<GameObject>() { };
+    
+    private static bool playerExists;
 
     void Start()
     {
         selectedPlayer = players[0];
-        DontDestroyOnLoad(transform.gameObject);
+
+        if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(transform.gameObject);
+        }
+
+        
     }
 
     void Update()

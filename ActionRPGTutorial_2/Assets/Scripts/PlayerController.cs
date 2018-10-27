@@ -11,10 +11,23 @@ public class PlayerController : MonoBehaviour {
     public Vector2 lastMove;
     private Animator anim;
     public int characterID;
+    private bool playerExists;
 
-	void Start () {
+	void Start ()
+    {
         anim = GetComponent<Animator>();
-	}
+
+        /*if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }*/
+
+    }
 
     void Update(){
 
